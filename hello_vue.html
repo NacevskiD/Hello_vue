@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/vue@next"></script>
+
+</head>
+<body>
+
+    <div id="app">
+
+        <h1>Hello Vue</h1>
+        <p>
+            {{ messageWithExcPoints }}
+        </p>
+
+        <button v-on:click="addExclamation">Add !</button>
+        <button v-on:click="clear">Clear exclamation points. </button>
+
+    </div>
+
+
+<script>
+
+    let app = Vue.createApp({
+        data(){
+            return{
+                message: 'hi',
+                numberOfExcPoints: 0
+            }
+        },
+        methods:{
+            addExclamation(){
+                if (this.numberOfExcPoints < 10){
+                    this.numberOfExcPoints++
+                }else {
+                    alert('No more exclamation points.')
+                }
+            },
+            clear(){
+                this.numberOfExcPoints = 0
+            }
+        },
+        computed:{
+            messageWithExcPoints(){
+                let messageWithPoint = this.message
+
+                for (let x = 0; x < this.numberOfExcPoints; x++){
+                    messageWithPoint = messageWithPoint + '!'
+                }
+                return messageWithPoint
+            }
+        }
+    })
+
+    app.mount('#app')
+
+</script>
+
+</body>
+</html>
